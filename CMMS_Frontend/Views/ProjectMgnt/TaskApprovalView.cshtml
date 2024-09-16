@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewData["Title"] = "Task Approval View";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form theme-form">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Project Title</label>
+                                    <input id="projectTitle" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Task Name</label>
+                                    <input id="taskName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Task Rate (LKR)</label>
+                                    <input id="taskRate" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Task Rate Type</label>
+                                    <input id="taskRateTypeName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Task Priority</label>
+                                    <input id="priorityName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Task Status</label>
+                                    <input id="taskStatusName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label>Starting Date</label>
+                                    <input id="startDate" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label>Starting Time</label>
+                                    <input id="startTime" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label>Ending Date</label>
+                                    <input id="endDate" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label>Ending Time</label>
+                                    <input id="endTime" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Service Type</label>
+                                    <input id="serviceTypeName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Assign To</label>
+                                    <input id="assignToName" class="form-control" type="text" readonly>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Description</label>
+                                    <textarea class="form-control" id="description" rows="2" readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label>Task Images</label>
+                                    <div class="owl-carousel owl-theme" id="taskImageList">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input id="taskID" type="hidden">
+                                <input id="contractorID" type="hidden">
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-end">
+                                    <button id="btnApprove" class="btn btn-primary me-3" onclick="ConfirmApprovalModal()">Approve</button>
+                                    <button id="btnReject" class="btn btn-danger" onclick="ConfirmRejectModal()">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!--Task Approval Confirmation Popup Here-->
+<div class="modal fade" id="approvalConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Task Approval Confirmation</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="theme-form">
+                    <div class="row mb-0">
+                        <label class="col-sm-5 col-form-label pb-0">Do you visit the site?</label>
+                        <div class="col-sm-7">
+                            <div class="mb-0">
+                                <div class="form-check form-check-inline checkbox checkbox-primary">
+                                    <input class="form-check-input" id="isVisitedSite" type="checkbox">
+                                    <label class="form-check-label" for="isVisitedSite">Yes</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-0">
+                        <label class="col-sm-5 col-form-label pb-0">Please select a Rating</label>
+                        <div class="col-sm-7">
+                            <div class="stars stars-example-fontawesome-o" style="margin-top: 2%;margin-bottom: 2%;">
+                                <select id="taskRating" name="rating" data-current-rating="1" autocomplete="off">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span class="title current-rating font-primary">
+                                    Current rating:
+                                    <span class="value digits"></span>
+                                </span>
+                                <span class="title your-rating font-primary hidden">
+                                    Your rating: <span class="value digits"></span>
+                                    <a class="clear-rating" href="javascript:void(0)">
+                                        &nbsp;
+                                        <i class="fa fa-times-circle"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-0">
+                        <label class="col-sm-5 col-form-label pb-0">Comment</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" id="taskComment" rows="2"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="approveModalCloseBtn" class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                @if ((await authorizationService.AuthorizeAsync(User, "ApprovePendingApprovalTask")).Succeeded)
+                {
+                    <button id="approveModalApproveBtn" class="btn btn-primary" type="button" onclick="ApproveTask()">Approve</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--Task Approval Confirmation Popup End Here-->
+
+<!--Task Rejection Popup Here-->
+<div class="modal fade" id="taskRejectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Task Rejection Confirmation</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="theme-form">
+                    <div class="row mb-0">
+                        <label class="col-sm-5 col-form-label pb-0">Reason for Rejection</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" id="taskRejectReason" rows="2"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="rejectModalCloseBtn" class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                @if ((await authorizationService.AuthorizeAsync(User, "RejectPendingApprovalTask")).Succeeded)
+                {
+                    <button id="rejectModalApproveBtn" class="btn btn-danger" type="button" onclick="RejectTask()">Reject</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--Task Rejection Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/ProjectMgnt/task-approval-view.js" asp-append-version="true"></script>
+}

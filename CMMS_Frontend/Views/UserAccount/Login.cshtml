@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-7"><img class="bg-img-cover bg-center" src="../assets/images/login/cmmsBackgroundImage.jpeg" alt="cmms-loginpage"></div>
+        <div class="col-xl-5 p-0">          
+            <div class="login-card">              
+                <form class="theme-form login-form">
+                    <center>
+                        <img class="img-fluid" style="max-width: 80%;" src="~/assets/images/logo/cmms-logo-no-background.svg" alt="CMMS-Logo">
+                    </center>
+                    <br />
+                    <br />
+                    <h4>Login</h4>
+                    <h6>Welcome back! Log in to your account.</h6>
+                    <div id="userLoginDiv">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                                <input id="username" class="form-control" type="text" required="required" placeholder="Username">
+                            </div>
+                            <label id="usernameCheck" style="color: red;">
+                                *Username is required
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="icon-lock"></i></span>
+                                <input id="password" class="form-control" type="password" name="login[password]" required="required" placeholder="*********">
+                                @*<div class="show-hide"><span class="show"> </span></div>*@
+                            </div>
+                            <label id="passwordCheck" style="color: red;">
+                                *Password is required
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                            @*<input id="checkbox1" type="checkbox">*@
+                            @*<label class="text-muted" for="checkbox1">Remember password</label>*@
+                            @*</div><a class="link" href="#">Forgot password?</a>*@
+                            </div>
+                            <div class="form-group">
+                                <button id="btnSignIn" class="btn btn-primary btn-block" type="submit" onclick="SignInButtonEvent();return false">Sign in</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="userResetPasswordDiv">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="icon-user"></i></span>
+                                <input id="usernameReset" class="form-control" type="text" required="" placeholder="Username" autocomplete="new-password" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">New Password</label>
+                            <input id="userPasswordReset" class="form-control" type="password" placeholder="*********" required="required" autocomplete="new-password">
+                            <label id="userPasswordResetCheck" style="color: red;">
+                                *New Password is required
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Confirm New Password</label>
+                            <input id="userConfirmPasswordReset" class="form-control" type="password" placeholder="*********" required="required" autocomplete="new-password">
+                            <label id="userConfirmPasswordResetCheck" style="color: red;">
+                                *Confirm New Password is required
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button id="btnResetPassword" class="btn btn-primary btn-block" type="submit" onclick="ResetPassInButtonEvent();return false">Reset Password</button>
+                        </div>
+                    </div>                
+                    <p>Don't have account?<a class="ms-2" href="/UserAccount/Registration">Create Account</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/scripts/UserLogin/user-login.js" asp-append-version="true"></script>
+}

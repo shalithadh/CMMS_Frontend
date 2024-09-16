@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "User Role Permissions";
+}
+
+@section Styles {
+    <link href="~/assets/css/select.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>User Role Permissions</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Role Wise Permission List </h5>
+                        </div>
+                        <div class="col-lg-3">
+                            @if ((await authorizationService.AuthorizeAsync(User, "EditUserRolePermission")).Succeeded)
+                            {
+                                <button id="btnSaveRolePermission" class="btn btn-primary" onClick="SaveRolePermissions();" type="button" style="float:right;">Update</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--First Card-->
+                    <div class="card">
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>User Role</label>
+                                        <select id="userRoleFilter" class="form-select" style="width:100%;">
+                                            <option value=0>Please Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Load</label><br />
+                                        @if ((await authorizationService.AuthorizeAsync(User, "EditUserRolePermission")).Succeeded)
+                                        {
+                                            <button id="btnFilter" class="btn btn-secondary" onclick="LoadUserRoleWisePermissions()">Load</button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="permiTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Screen Name</th>
+                                            <th>Permission Name</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+@section Scripts {
+    <script src="~/assets/js/datatable/datatables/dataTables.select.min.js"></script>
+    <script src="~/assets/js/datatable/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/scripts/UserMgnt/user-role-permissions.js" asp-append-version="true"></script>
+}

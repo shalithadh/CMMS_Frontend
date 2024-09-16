@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="edit-profile">
+        <div class="row">
+            <div class="col-xl-12">
+                <form class="card">
+                    <div class="card-header pb-0">
+                        <h4 id="userProfileTitle" class="card-title mb-0">Edit Profile</h4>
+                        <div class="card-options"><a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a><a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-8">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Username</label>
+                                            <input id="username" class="form-control" type="text" placeholder="Username" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Email address</label>
+                                            <input id="email" class="form-control" type="email" placeholder="Email" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Role</label>
+                                            <input id="roleName" class="form-control" type="text" placeholder="Role" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">First Name</label>
+                                            <input id="firstName" class="form-control" type="text" placeholder="First Name">
+                                            <label id="firstNameCheck" style="color: red;">
+                                                *First Name is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Last Name</label>
+                                            <input id="lastName" class="form-control" type="text" placeholder="Last Name">
+                                            <label id="lastNameCheck" style="color: red;">
+                                                *Last Name is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Mobile No</label>
+                                            <input id="mobileNo" class="form-control" type="text" placeholder="Mobile No">
+                                            <label id="mobileNoCheck" style="color: red;">
+                                                *Mobile No is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">NIC</label>
+                                            <input id="nic" class="form-control" type="text" placeholder="NIC">
+                                            <label id="nicCheck" style="color: red;">
+                                                *NIC is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Address 1</label>
+                                            <input id="address1" class="form-control" type="text" placeholder="Address 1">
+                                            <label id="address1Check" style="color: red;">
+                                                *Address 1 is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Address 2</label>
+                                            <input id="address2" class="form-control" type="text" placeholder="Address 2">
+                                            <label id="address2Check" style="color: red;">
+                                                *Address 2 is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Address 3</label>
+                                            <input id="address3" class="form-control" type="text" placeholder="Address 3">
+                                            <label id="address3Check" style="color: red;">
+                                                *Address 3 is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">District</label>
+                                            <input id="district" class="form-control" type="text" placeholder="District">
+                                            <label id="districtCheck" style="color: red;">
+                                                *District is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-5">
+                                        <div class="mb-3">
+                                            <label class="form-label">Province</label>
+                                            <input id="province" class="form-control" type="text" placeholder="Province">
+                                            <label id="provinceCheck" style="color: red;">
+                                                *Province is required
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="mb-3">
+                                            <div id="userContractorView">
+                                                <label class="form-label">Contractor Services</label>
+                                                <select id="serviceTypeID" class="form-select" style="width:100%;">
+                                                </select>
+                                                <label id="serviceTypeIDCheck" style="color: red;">
+                                                    *Please select service/services
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">                                   
+                                    <div class="col-md-5">
+                                        <div class="mb-3">
+                                            <div id="userVendorView">
+                                                <label class="form-label">Vendor Categories</label>
+                                                <select id="vendorCategoryTypeID" class="form-select" style="width:100%;">
+                                                </select>
+                                                <label id="vendorCategoryTypeIDCheck" style="color: red;">
+                                                    *Please select category/categories
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input id="userID" type="hidden">
+                                    <input id="userRoleID" type="hidden">
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img class="img-fluid" id="userUploadedImg" src="/assets/images/dashboard/avatar-user-profile-icon-.png" style="width:200px;" alt="User Image" onerror="ImgError(this);" /><br /><br />
+                                        <input type="file" id="uploadUserImage">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer text-end">                         
+                            @if ((await authorizationService.AuthorizeAsync(User, "EditUserProfile")).Succeeded)
+                            {
+                                <button id="btnSaveDetails" class="btn btn-primary" type="button" onclick="SubmitButtonEvent()">Update Profile</button>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/scripts/UserProf/user-profile.js" asp-append-version="true"></script>
+}

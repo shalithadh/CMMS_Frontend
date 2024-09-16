@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="viho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="~/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" type="image/x-icon">
+    <title>CMMS - @ViewData["Title"]</title>
+    <!-- Google font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="~/assets/css/cmmsGFont1.css" rel="stylesheet" />
+    <link href="~/assets/css/cmmsGFont2.css" rel="stylesheet" />
+    <link href="~/assets/css/cmmsGFont3.css" rel="stylesheet" />
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/fontawesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/feather-icon.css">
+    <!-- Plugins css start-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/date-picker.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/timepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/rowGroup.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/owlcarousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/rating.css">
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link id="color" rel="stylesheet" href="~/assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css">
+    <link href="~/assets/toastr/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.css">
+    <link href="~/assets/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <style type="text/css">
+
+        #loading-bar {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .blur-background {
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        }
+    </style>
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <!-- Loader starts-->
+    <div id="loading-bar" class="invisible">
+        <img src="~/assets/images/cmms-loader.svg" style="position:fixed; top:0; left:0; right:0; bottom:0; margin:auto; z-index: 10; width:8%;" />
+    </div>
+    <div id="newThemeLoaderWrap" class="loader-wrapper">
+        <div id="newThemeLoader" class="theme-loader">
+            <div id="loaderCMMS" class="loader-p"></div>
+        </div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-main-header" id="pageWrapperHeader">
+            <partial name="_TopBar" />
+        </div>
+        <!-- Page Header Ends -->
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper horizontal-menu">
+            <!-- Page Sidebar Start-->
+            <partial name="_SideBar" />
+            <!-- Page Sidebar Ends-->
+            <!-- Page Body Start-->
+            <div>
+                <div class="page-body" id="pageContentBodyDiv">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- Page Body End-->
+            <!-- footer start-->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 footer-copyright">
+                            <p class="mb-0">Copyright @DateTime.Now.Year © CMMS All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- latest jquery-->
+    <script src="~/assets/js/jquery-3.5.1.min.js"></script>
+    <!-- feather icon js-->
+    <script src="~/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="~/assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- Sidebar jquery-->
+    <script src="~/assets/js/sidebar-menu.js"></script>
+    <script src="~/assets/js/config.js"></script>
+    <!-- Bootstrap js-->
+    <script src="~/assets/js/bootstrap/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Plugins JS start-->
+    <script src="~/assets/js/datepicker/date-picker/datepicker.js"></script>
+    <script src="~/assets/js/datepicker/date-picker/datepicker.en.js"></script>
+    <script src="~/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="~/assets/js/time-picker/jquery-clockpicker.min.js"></script>
+    <script src="~/assets/js/time-picker/highlight.min.js"></script>
+    <script src="~/assets/js/time-picker/clockpicker.js"></script>
+    <script src="~/assets/js/tooltip-init.js"></script>
+    <script src="~/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/assets/js/datatable/datatables/dataTables.rowGroup.min.js"></script>
+    <script src="~/assets/js/rating/jquery.barrating.js"></script>
+    <script src="~/assets/js/rating/rating-script.js"></script>
+    @*<script src="~/assets/js/touchspin/vendors.min.js"></script>*@
+    <script src="~/assets/js/touchspin/touchspin.js"></script>
+    <script src="~/assets/js/touchspin/input-groups.min.js"></script>
+    <script src="~/assets/js/owlcarousel/owl.carousel.js"></script>
+    <script src="~/assets/js/owlcarousel/owl-custom.js"></script>
+    <script src="~/assets/js/ecommerce.js"></script>
+    <script src="~/assets/js/product-list-custom.js"></script>
+    <script src="~/assets/toastr/toastr.min.js"></script>
+    <script src="~/assets/js/select2/select2.full.min.js"></script>
+    <script src="~/assets/js/select2/select2-custom.js"></script>
+    <script src="~/assets/jquery-ui/jquery-ui.js"></script>
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/theme-customizer/customizer.js"></script>
+    <script src="~/scripts/shared.js" asp-append-version="true"></script>
+    <script src="~/scripts/EStore/item-cart-common.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

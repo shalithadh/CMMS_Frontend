@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Order View";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">               
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Order No: <span id="orderNo" style="font-weight: bold;"></span></h5>
+                        </div>
+                        <div class="col-lg-3">                   
+                            <button id="btnViewOrderInvoice" class="btn btn-primary" onClick="ViewOrderInvoice();" type="button" style="float:right;">
+                                <i class="fa fa-file-text-o"></i>&nbsp;&nbsp;View Invoice
+                            </button>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form theme-form">
+                                <hr />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Payment Method: <span id="payMethodName" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Placed Date: <span id="placedDate" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Estimated Delivery Date: <span id="estDeliveryDate" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Delivery Charges: <span id="deliveryCharge" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Sub Total: <span id="subTotal" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="mb-3">
+                                            <label>Total: <span id="total" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                </div>                            
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div class="card">
+                                <div class="job-search" id="packageDivGrid">
+                                    <div id="packageDiv" class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <h6 class="f-w-600">Vendor Name: <span id="vendorName"></span><span class="badge badge-primary pull-right">Processing</span></h6>
+                                                <p>Package 1</p>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="order-history table-responsive wishlist">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Item Name</th>
+                                                        <th>Unit Price (Rs.)</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total (Rs.)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="cmmsItemBodyDiv">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="product-name">
+                                                                <a onClick="openItemView('');">
+                                                                    <h6>itemName</h6>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td style="text-align:right;">itemUnitPrice</td>
+                                                        <td style="text-align:right;">Qty</td>
+                                                        <td style="text-align:right;">totalAmount</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/scripts/EStore/user-order-view.js" asp-append-version="true"></script>
+}

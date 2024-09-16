@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if ((await authorizationService.AuthorizeAsync(User, "ViewAdminDashboard")).Succeeded)
+{
+    @section Styles {
+
+    }
+
+    <partial name="_AdminDashboard" />
+
+    @section Scripts {
+        <script src="~/scripts/Dashboard/admin-dashboard.js" asp-append-version="true"></script>
+    }
+
+}
+else if ((await authorizationService.AuthorizeAsync(User, "ViewCustomerDashboard")).Succeeded)
+{
+    @section Styles {
+
+    }
+
+    <partial name="_CustomerDashboard" />
+
+    @section Scripts {
+        <script src="~/scripts/Dashboard/customer-dashboard.js" asp-append-version="true"></script>
+    }
+
+}
+else if ((await authorizationService.AuthorizeAsync(User, "ViewContractorDashboard")).Succeeded)
+{
+    @section Styles {
+
+    }
+
+    <partial name="_ContractorDashboard" />
+
+    @section Scripts {
+        <script src="~/scripts/Dashboard/contractor-dashboard.js" asp-append-version="true"></script>
+    }
+
+}
+else if ((await authorizationService.AuthorizeAsync(User, "ViewVendorDashboard")).Succeeded)
+{
+    @section Styles {
+
+    }
+
+    <partial name="_VendorDashboard" />
+
+    @section Scripts {
+        <script src="~/scripts/Dashboard/vendor-dashboard.js" asp-append-version="true"></script>
+    }
+
+}

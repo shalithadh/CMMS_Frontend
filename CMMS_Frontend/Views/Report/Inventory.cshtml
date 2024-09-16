@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Inventory Report";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Inventory Report</h5>
+                </div>
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Vendor Category Type</label>
+                                        <select id="vendorCategoryTypeFilter" class="form-select" style="width:100%;">
+                                            <option value=-1>All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Filter</label><br />
+                                        <a id="btnFilter" class="btn btn-secondary" onclick="LoadFilteredList()">Filter</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table id="reportTable" class="display" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Vendor Category</th>
+                                    <th>Item Name</th>
+                                    <th>Unit Price (Rs.)</th>
+                                    <th>Total Qty</th>
+                                    <th>Sold Qty</th>
+                                    <th>Available Qty</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+
+@section Scripts {
+    <script src="~/scripts/Reports/inventory-overview.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout Page";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header pb-0">
+            <h5>Billing Details</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-12">
+                    <form>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="inputfirstname">First Name</label>
+                                <input class="form-control" id="checkFirstName" type="text" readonly>
+                                <label id="checkFirstNameCheck" style="color: red;">
+                                    *First Name is required
+                                </label>
+                            </div>
+                            <div class="mb-3 col-sm-6">
+                                <label for="inputlastname">Last Name</label>
+                                <input class="form-control" id="checkLastName" type="text" readonly>
+                                <label id="checkLastNameCheck" style="color: red;">
+                                    *Last Name is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAddress1">Address 1</label>
+                            <input class="form-control" id="checkAddress1" type="text">
+                            <label id="checkAddress1Check" style="color: red;">
+                                *Address 1 is required
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAddress2">Address 2</label>
+                            <input class="form-control" id="checkAddress2" type="text">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputAddress3">Address 3</label>
+                            <input class="form-control" id="checkAddress3" type="text">
+                            <label id="checkAddress3Check" style="color: red;">
+                                *Address 3 is required
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-sm-6">
+                                <label for="inputDistrict">District</label>
+                                <input class="form-control" id="checkDistrict" type="text">
+                                <label id="checkDistrictCheck" style="color: red;">
+                                    *District is required
+                                </label>
+                            </div>
+                            <div class="mb-3 col-sm-6">
+                                <label for="inputProvince">Province</label>
+                                <input class="form-control" id="checkProvince" type="text">
+                                <label id="checkProvinceCheck" style="color: red;">
+                                    *Province is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputRemarks">Remarks</label>
+                            <textarea class="form-control" id="checkRemarks" rows="2"></textarea>
+                            <input id="userID" type="hidden">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="checkout-details">
+                        <div class="order-box">
+                            <div class="title-box">
+                                <div class="checkbox-title">
+                                    <h4 class="mb-0">Item </h4><span>Total</span>
+                                </div>
+                            </div>
+                            <ul id="cartItemList" class="qty">
+                            </ul>
+                            <ul class="sub-total">
+                                <li>Sub Total <span id="checkSubTotal" class="count">Rs. 0.00</span></li>
+                                <li class="shipping-class">
+                                    Deilvery Charge
+                                    <span id="checkDeliveryCharge" class="count">Rs 0.00</span>
+                                </li>
+                            </ul>
+                            <ul class="sub-total total">
+                                <li>Total Amount<span id="checkFinalTotal" class="count">Rs 0.00</span></li>
+                            </ul>
+                            <div class="animate-chk">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="d-block" for="edo-ani1">
+                                            <input class="radio_animated" id="checkCODPayment" type="radio" name="rdo-ani" checked="" data-original-title="" title="">Cash On Delivery
+                                        </label>
+                                        <label class="d-block" for="edo-ani2">
+                                            <input class="radio_animated" id="checkOnlinePayment" type="radio" name="rdo-ani" data-original-title="" title="">PayPal<img class="img-paypal" src="../assets/images/checkout/paypal.png" alt="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div>
+                                <label style="color: orangered; font-style: italic;">
+                                    **Note that normally orders will be delivered within 3 days.
+                                </label>
+                            </div>
+                            <br />
+                            <div class="order-place">
+                                <button id="btnPlaceOrder" class="btn btn-primary" onclick="SubmitOrderEvent();">Place Order </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+@section Scripts {
+    <script src="~/scripts/EStore/store-checkout.js" asp-append-version="true"></script>
+}

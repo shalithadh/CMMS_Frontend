@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewData["Title"] = "Order Managment";
+}
+
+@section Styles {
+
+}
+
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3 id="orderMgntTitleName">Order Management</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Order List </h5>
+                        </div>
+                        <div class="col-lg-3">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--First Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                                <h6>Filter Panel</h6>
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Order Status</label>
+                                        <select id="orderStatusFilter" class="form-select" style="width:100%;">
+                                            <option value=0>Please Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Placed Starting Date</label>
+                                        <input id="startDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Placed Ending Date</label>
+                                        <input id="endDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Filter</label><br />
+                                        @if ((await authorizationService.AuthorizeAsync(User, "EditOrderManagement")).Succeeded)
+                                        {
+                                            <a id="btnFilter" class="btn btn-secondary" onclick="LoadFilteredOrderList();">Filter</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="orderMgntTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Order No</th>
+                                            <th>Placed Date</th>
+                                            <th>Delivery Date</th>
+                                            <th>Payment Method</th>
+                                            <th>Package ID</th>
+                                            <th>Order Status</th>
+                                            <th>Customer</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!--Update Popup Here-->
+<div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="orderModalTitle" class="modal-title">Order Details</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form theme-form">                  
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Order Status</label>
+                                <select id="orderStatus" class="form-select" style="width:100%;">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label style="color:white;">Order Action</label><br />
+                                @if ((await authorizationService.AuthorizeAsync(User, "EditOrderManagement")).Succeeded)
+                                {
+                                    <button id="btnUpdateDetails" class="btn btn-primary me-3" onclick="UpdateOrderStatus()">Update</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Order No</label>
+                                <input id="orderNo" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Package ID</label>
+                                <input id="packageID" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Order Status</label>
+                                <input id="orderStatusName" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Customer Name</label>
+                                <input id="customerName" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Net Total</label>
+                                <input id="total" class="form-control" type="text" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="orderMgntDetailTable" class="display" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Item Name</th>
+                                        <th>Unit Amount</th>
+                                        <th>Quantity</th>
+                                        <th>ItemWise Total</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input id="orderID" type="hidden">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Update Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/OrderMgnt/order-mgnt.js" asp-append-version="true"></script>
+}

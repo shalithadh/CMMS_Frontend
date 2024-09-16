@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "User Management";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3 id="titleName">User Management</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>User List</h5>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <table id="userMgntTable" class="display" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>User Role ID</th>
+                                    <th>Role Name</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->
+<!--Reset User Popup Here-->
+<div class="modal fade" id="userPasswordResetModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">User Password Reset Confirmation</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="theme-form">
+                    <div class="row mb-0">
+                        <label class="col-sm-12 col-form-label pb-0">Are you sure, you want to reset this user's password?</label>
+                        <div>
+                            <input id="resetUserID" type="hidden">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @if ((await authorizationService.AuthorizeAsync(User, "EditUserManagement")).Succeeded)
+                {
+                    <button id="resetModalCloseBtn" class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                    <button id="resetModalApproveBtn" class="btn btn-info" type="button" onclick="ResetUserPassword()">Reset</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--Reset User Popup End Here-->
+
+<!--User Deactivate Popup Here-->
+<div class="modal fade" id="userDeactivateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">User Status Change Confirmation</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="theme-form">
+                    <div class="row mb-0">
+                        <label id="userStatusChangeLbl" class="col-sm-12 col-form-label pb-0">Are you sure, you want to deactivate this user?</label>
+                        <div>
+                            <input id="deactiveUserID" type="hidden">
+                            <input id="statusID" type="hidden">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @if ((await authorizationService.AuthorizeAsync(User, "EditUserManagement")).Succeeded)
+                {
+                    <button id="deactModalCloseBtn" class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                    <button id="deactModalApproveBtn" class="btn btn-danger" type="button" onclick="UserStatusChange()">Deactivate</button>
+                    <button id="actModalApproveBtn" class="btn btn-primary" type="button" onclick="UserStatusChange()">Activate</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--User Deactivate Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/UserMgnt/user-mgnt-admin.js" asp-append-version="true"></script>
+}

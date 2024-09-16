@@ -1,0 +1,95 @@
+﻿@section Styles {
+
+}
+
+<div class="container-fluid general-widget">
+    <div class="row">
+        <div class="col-sm-6 col-xl-4 col-lg-6">
+            <div class="card o-hidden border-0">
+                <div class="bg-primary b-r-4 card-body">
+                    <div class="media static-top-widget">
+                        <div class="align-self-center text-center"><i data-feather="package"></i></div>
+                        <div class="media-body">
+                            <span class="m-0">Orders</span>
+                            <h5 id="venTotOrders" class="mb-0 counter">xxxx</h5><i class="icon-bg" data-feather="package"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-4 col-lg-6">
+            <div class="card o-hidden border-0">
+                <div class="bg-secondary b-r-4 card-body">
+                    <div class="media static-top-widget">
+                        <div class="align-self-center text-center"><i data-feather="award"></i></div>
+                        <div class="media-body">
+                            <span class="m-0">My Best Customer</span>
+                            <h5 id="venBestCustomer" class="mb-0 counter">xxxx</h5><i class="icon-bg" data-feather="award"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-4 col-lg-6">
+            <div class="card o-hidden border-0">
+                <div class="bg-info b-r-4 card-body">
+                    <div class="media static-top-widget">
+                        <div class="align-self-center text-center"><i data-feather="archive"></i></div>
+                        <div class="media-body">
+                            <span class="m-0">Items</span>
+                            <h5 id="venTotItems" class="mb-0 counter">xxxx</h5><i class="icon-bg" data-feather="archive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 xl-100 box-col-12">
+            <div class="card">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5>Recent Orders - Top 5</h5>
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive">
+                        <table id="venRecentOrders" class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order No</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Placed Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="venRecentOrdersBody">                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 xl-100 box-col-12">
+            <div class="card employee-status">
+                <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                    <h5>Recent Items - Top 5</h5>
+
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive">
+                        <table id="venRecentItems" class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Added Date</th>
+                                    <th scope="col">Availability</th>
+                                </tr>
+                            </thead>
+                            <tbody id="venRecentItemsBody">                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

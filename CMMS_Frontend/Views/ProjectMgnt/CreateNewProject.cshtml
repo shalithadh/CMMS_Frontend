@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewData["Title"] = "Create New Project";
+}
+
+@section Styles {
+    <style>
+        .ui-autocomplete {
+            max-height: 100px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+        }
+        /* IE 6 doesn't support max-height
+        * we use height instead, but this forces the menu to always be this tall
+        */
+        * html .ui-autocomplete {
+            height: 100px;
+        }
+    </style>
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form theme-form">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Contruction Project Title</label>
+                                    <input id="projectTitle" class="form-control" type="text" placeholder="Project name *">
+                                    <label id="projectTitleCheck" style="color: red;">
+                                        *Project Title is required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="mb-3">
+                                    <label>Client Name</label>
+                                    <input id="clientSearch" class="form-control" type="text" placeholder="&#xF002; Search Client..." style="font-family:Arial, FontAwesome;">
+                                    <input type="hidden" id="clientID">
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="mb-3">
+                                    <label style="color: white;">Client name</label>
+                                    <input id="clientName" class="form-control" type="text" placeholder="Name client or company name" readonly>
+                                    <label id="clientNameCheck" style="color: red;">
+                                        *Client Name is required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Priority</label>
+                                    <select id="projectPriority" class="form-select">
+                                        <option value=0>Please Select</option>
+                                    </select>
+                                    <label id="projectPriorityCheck" style="color: red;">
+                                        *Project Priority is required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Project Size</label>
+                                    <select id="projectSize" class="form-select">
+                                        <option value=0>Please Select</option>
+                                    </select>
+                                    <label id="projectSizeCheck" style="color: red;">
+                                        *Project Size is required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Project Status</label>
+                                    <select id="projectStatus" class="form-select">
+                                        <option value=0>Please Select</option>
+                                    </select>
+                                    <label id="projectStatusCheck" style="color: red;">
+                                        *Project Status is required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Starting Date</label>
+                                    <input id="startDate" class="datepicker-here form-control" type="text" data-language="en">
+                                    <label id="startDateCheck" style="color: red;">
+                                        *Start Date is required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Starting Time</label>
+                                    <div class="input-group clockpicker" data-placement="top" data-align="left" data-donetext="Done">
+                                        <input id="startTime" class="form-control" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Ending Date</label>
+                                    <input id="endDate" class="datepicker-here form-control" type="text" data-language="en">
+                                    <label id="endDateCheck" style="color: red;">
+                                        *End Date is required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="mb-3">
+                                    <label>Ending Time</label>
+                                    <div class="input-group clockpicker" data-placement="top" data-align="left" data-donetext="Done">
+                                        <input id="endTime" class="form-control" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Enter More Details</label>
+                                    <textarea class="form-control" id="description" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input id="projectID" type="hidden">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-end">
+                                    @if ((await authorizationService.AuthorizeAsync(User, "AddNewProject")).Succeeded)
+                                    {
+                                        <button id="btnSaveDetails" class="btn btn-primary me-3" onclick="SubmitProjectDetails()">Add</button>
+                                        <button id="btnReset" class="btn btn-secondary">Reset</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/scripts/ProjectMgnt/create-new-project.js" asp-append-version="true"></script>
+}

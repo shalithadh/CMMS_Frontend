@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Advertisement Management";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Advertisement Management</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Advertisement List </h5>
+                        </div>
+                        <div class="col-lg-3">
+                            @if ((await authorizationService.AuthorizeAsync(User, "AddAdvMgnt")).Succeeded)
+                            {
+                                <button id="btnAdvMgntOpenModal" class="btn btn-primary" onClick="AddAdvMgntPopUp();" type="button" style="float:right;">Add + </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--First Card-->
+                    <div class="card">
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Starting Date</label>
+                                        <input id="startDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Ending Date</label>
+                                        <input id="endDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Filter</label><br />
+                                        @if ((await authorizationService.AuthorizeAsync(User, "EditAdvMgnt")).Succeeded)
+                                        {
+                                            <a id="btnFilter" class="btn btn-secondary" onclick="LoadFilteredList()">Filter</a>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="advMgntTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Campaign Name</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!--Add Advertisement Popup Here-->
+<div class="modal fade" id="addAdvModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="advModalTitle" class="modal-title">Add Advertisement</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form theme-form">
+                        <div class="row">                           
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label>Campaign Name</label>
+                                    <input id="campaignName" class="form-control" type="text" placeholder="Campaign Name *">
+                                    <label id="campaignNameCheck" style="color: red;">
+                                        *Campaign Name is required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label>Description</label>
+                                    <textarea class="form-control" id="description" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label>Start Date</label>
+                                    <input id="startDate" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    <label id="startDateCheck" style="color: red;">
+                                        *Start Date is required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label>End Date</label>
+                                    <input id="endDate" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    <label id="endDateCheck" style="color: red;">
+                                        *End Date is required
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div class="form-check form-check-inline checkbox checkbox-primary">
+                                        <input class="form-check-input" id="isActive" type="checkbox">
+                                        <label class="form-check-label" for="isActive">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Advertisement Banner</label>
+                                    <br />
+                                    <input type="file" id="advImageGallery">
+                                    @if ((await authorizationService.AuthorizeAsync(User, "AddAdvMgnt")).Succeeded)
+                                    {
+                                        <button id="btnClearSelectedImg" class="btn btn-danger btn-pill btn-sm me-3" onclick="clearAllSelectedImages()">Clear Images</button>
+                                    }
+                                    <div class="gallery"></div>
+                                    <br />
+                                    <br />
+                                    <label id="advImageGalleryCheck" style="color: red;">
+                                        *Please upload an advertisement banner
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input id="advID" type="hidden">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-end">
+                                @if ((await authorizationService.AuthorizeAsync(User, "EditAdvMgnt")).Succeeded)
+                                {
+                                    <button id="btnSaveDetails" class="btn btn-primary me-3" onclick="SubmitButtonEvent()">Add</button>
+                                }
+                                @if ((await authorizationService.AuthorizeAsync(User, "AddAdvMgnt")).Succeeded)
+                                {
+                                   <button id="btnReset" class="btn btn-secondary" onclick="ClearData()">Reset</button>
+                                }                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--Add Advertisement Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/AdvMgnt/advertisement-mgnt.js" asp-append-version="true"></script>
+}
+

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Cart Page";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Cart</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="order-history table-responsive wishlist">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Item Name</th>
+                                        <th>Unit Price (Rs.)</th>
+                                        <th>Quantity</th>
+                                        <th>Remove Item</th>
+                                        <th>Total (Rs.)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id = "cmmsItemCartBodyDiv">
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+@section Scripts {
+    <script src="~/scripts/EStore/store-cart.js" asp-append-version="true"></script>
+}

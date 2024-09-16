@@ -1,0 +1,187 @@
+﻿
+@{
+    ViewData["Title"] = "Item Compare";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div>
+        <div class="row product-page-main p-0">
+            <div class="col-xl-4 col-md-4 box-col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <form>
+                                <div class="form-group m-0">
+                                    <input id="itemSearch_1" class="form-control" type="text" role="combobox" placeholder="&#xF002; Search 1st Item..." style="font-family:Arial, FontAwesome; text-transform:uppercase;">
+                                    <input type="hidden" id="itemID_1">
+                                </div>
+                            </form>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="product-img">
+                                <center>
+                                    <img id="itemImageURL_1" class="img-fluid" src="../assets/images/ecommerce/01.jpg" alt="" style="width:200px;height:250px;">
+                                </center>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="pro-group pt-0 border-0">
+                            <div class="product-page-details mt-0">
+                                <h3 id="itemName_1">{Search Item 1...}</h3>
+                            </div>
+                        </div>
+                        <div id="itemDescription_1" class="pro-group">
+                            <p>{Item Description}</p>
+                        </div>
+                        <div class="pro-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>Amount &nbsp;: &nbsp;</b></td>
+                                                <td id="unitAmountDisplay_1">{Rs. XXXXX.XX}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Availability &nbsp;: &nbsp;</b></td>
+                                                <td id="itemAvalability_1">{Item Availability}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Category &nbsp;:&nbsp;</b></td>
+                                                <td id="vendorCategoryName_1">{Item Category}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Vendor &nbsp;: &nbsp;</b></td>
+                                                <td id="vendorName_1">{Vendor}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Sold In &nbsp;: &nbsp;</b></td>
+                                                <td id="uomName_1">{Item UOM}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 box-col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <form>
+                                <div class="form-group m-0">
+                                    <input id="itemSearch_2" class="form-control" type="text" role="combobox" placeholder="&#xF002; Search 2nd Item..." style="font-family:Arial, FontAwesome; text-transform:uppercase;">
+                                    <input type="hidden" id="itemID_2">
+                                </div>
+                            </form>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="product-img">
+                                <center>
+                                    <img id="itemImageURL_2" class="img-fluid" src="../assets/images/ecommerce/01.jpg" alt="" style="width:200px;height:250px;">
+                                </center>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="pro-group pt-0 border-0">
+                            <div class="product-page-details mt-0">
+                                <h3 id="itemName_2">{Search Item 2...}</h3>
+                            </div>
+                        </div>
+                        <div id="itemDescription_2" class="pro-group">
+                            <p>{Item Description}</p>
+                        </div>
+                        <div class="pro-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>Amount &nbsp;: &nbsp;</b></td>
+                                                <td id="unitAmountDisplay_2">{Rs. XXXXX.XX}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Availability &nbsp;: &nbsp;</b></td>
+                                                <td id="itemAvalability_2">{Item Availability}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Category &nbsp;:&nbsp;</b></td>
+                                                <td id="vendorCategoryName_2">{Item Category}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Vendor &nbsp;: &nbsp;</b></td>
+                                                <td id="vendorName_2">{Vendor}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Sold In &nbsp;: &nbsp;</b></td>
+                                                <td id="uomName_2">{Item UOM}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4 box-col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <button id="clearResultBtn" class="btn btn-info m-r-10" onclick="ClearResult()">
+                                Clear Result
+                            </button>
+                        </div>
+                        <br /><br />
+                        <div class="pro-group pt-0 border-0">
+                            <div class="product-page-details mt-0">
+                                <h3 class="product-price">Comparison Result</h3>
+                            </div>
+                        </div>
+                        <div class="pro-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>Amount Difference (Rs.)&nbsp;: &nbsp;</b></td>
+                                                <td id="unitAmountDiff">{XXXXX.XX}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Category &nbsp;:&nbsp;</b></td>
+                                                <td id="vendorCategoryDiff">{XXXXX}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Vendor &nbsp;: &nbsp;</b></td>
+                                                <td id="vendorNameDiff">{XXXXX}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Sold In &nbsp;: &nbsp;</b></td>
+                                                <td id="uomNameDiff">{XXXXX}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/scripts/EStore/item-compare.js" asp-append-version="true"></script>
+}

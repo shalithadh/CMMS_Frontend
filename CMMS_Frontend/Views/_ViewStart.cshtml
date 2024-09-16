@@ -1,0 +1,14 @@
+﻿@{
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "Shared/_LayoutLogin.cshtml";
+    }
+    <script type="text/javascript">
+        window.base_url = '@ApplicationSettings.ApiUrl'
+        var webUrl = '@ApplicationSettings.WebUrl'
+    </script>
+}

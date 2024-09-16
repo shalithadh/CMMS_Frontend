@@ -1,0 +1,279 @@
+﻿
+@{
+    ViewData["Title"] = "Item Inventory Management";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Item Inventory Management</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Item List </h5>
+                        </div>
+                        <div class="col-lg-3">
+                            @if ((await authorizationService.AuthorizeAsync(User, "AddItemInventory")).Succeeded)
+                            {
+                                <button id="btnitemMgntOpenModal" class="btn btn-primary" onClick="AddItemMgntPopUp();" type="button" style="float:right;">Add + </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--First Card-->
+                    <div class="card">
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Vendory Category Type</label>
+                                        <select id="vendorCategoryTypeFilter" class="form-select" style="width:100%;">
+                                            <option value=0>Please Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Filter</label><br />
+                                        @if ((await authorizationService.AuthorizeAsync(User, "EditItemInventory")).Succeeded)
+                                        {
+                                           <a id="btnFilter" class="btn btn-secondary" onclick="LoadFilteredList()">Filter</a>
+                                        }                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="inventoryMgntTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Item Name</th>
+                                            <th>Vendor Category Type</th>
+                                            <th>UOM</th>
+                                            <th>Total Qty</th>
+                                            <th>Sold Qty</th>
+                                            <th>Available Qty</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!--Add Item Popup Here-->
+<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="itemModalTitle" class="modal-title">Add Item</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form theme-form">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Vendor Category Type</label>
+                                <select id="vendorCategoryTypeID" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="vendorCategoryTypeIDCheck" style="color: red;">
+                                    *Please select a Vendor Category Type
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Item Name</label>
+                                <input id="itemName" class="form-control" type="text" placeholder="Item Name *">
+                                <label id="itemNameCheck" style="color: red;">
+                                    *Item Name is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Item Description</label>
+                                <textarea class="form-control" id="itemDescription" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Item Weight</label>
+                                <input id="itemWeight" class="form-control" type="text" placeholder="Enter Item Weight">
+                                <label id="itemWeightCheck" style="color: red;">
+                                    *Item Weight is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Weight Unit</label>
+                                <select id="weightUnit" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="weightUnitCheck" style="color: red;">
+                                    *Please select a Weight Unit
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>UOM</label>
+                                <select id="uom" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="uomCheck" style="color: red;">
+                                    *Please select an UOM
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Unit Amount</label>
+                                <input id="unitAmount" class="form-control" type="text" placeholder="Enter Unit Amount">
+                                <label id="unitAmountCheck" style="color: red;">
+                                    *Unit Amount is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Min Quantity Per Order</label>
+                                <input id="minQty" class="form-control" type="text" placeholder="Enter Min Quantity Per Order">
+                                <label id="minQtyCheck" style="color: red;">
+                                    *Min Qty is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Max Quantity Per Order</label>
+                                <input id="maxQty" class="form-control" type="text" placeholder="Enter Max Quantity Per Order">
+                                <label id="maxQtyCheck" style="color: red;">
+                                    *Max Qty is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Stock Quantity</label>
+                                <input id="qty" class="form-control" type="text" placeholder="Enter Stock Quantity">
+                                <label id="qtyCheck" style="color: red;">
+                                    *Qty is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline checkbox checkbox-primary">
+                                    <input class="form-check-input" id="isSoldUnitWise" type="checkbox">
+                                    <label class="form-check-label" for="isSoldUnitWise">Sold in Unit/Packet Wise</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline checkbox checkbox-primary">
+                                    <input class="form-check-input" id="isActive" type="checkbox">
+                                    <label class="form-check-label" for="isActive">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label>Item Images</label>
+                                <br />
+                                <input type="file" id="itemImageGallery">
+                                @if ((await authorizationService.AuthorizeAsync(User, "AddItemInventory")).Succeeded)
+                                {
+                                    <button id="btnClearSelectedImg" class="btn btn-danger btn-pill btn-sm me-3" onclick="clearAllSelectedImages()">Clear Images</button>
+                                }
+
+                                <div class="gallery"></div>
+                                <br />
+                                <br />
+                                <label id="itemImageGalleryCheck" style="color: red;">
+                                    *Please upload a item image
+                                </label>
+                                @*<br />
+                                <br />
+                                <a id="btnTestImageUpload" class="btn btn-primary me-3" onclick="ImageUpload()">Upload</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col">
+                            <input id="itemID" type="hidden">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-end">
+                                @if ((await authorizationService.AuthorizeAsync(User, "EditItemInventory")).Succeeded)
+                                {
+                                    <button id="btnSaveDetails" class="btn btn-primary me-3" onclick="SubmitButtonEvent()">Add</button>
+                                }
+                                @if ((await authorizationService.AuthorizeAsync(User, "AddItemInventory")).Succeeded)
+                                {
+                                   <button id="btnReset" class="btn btn-secondary" onclick="ClearData()">Reset</button>
+                                }                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!--Add Item Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/ItemInventory/item-inventorymgnt.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewData["Title"] = "Invoice View";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <!-- Container-fluid starts-->
+    <div class="container invoice">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div>
+                                <div class="row invo-header">
+                                    <div class="col-sm-6">
+                                        <div class="media">
+                                            <div class="media-left"><a href="javascript:void(0)"><img class="media-object img-100" src="~/assets/images/logo/cmms-logo-invoice.png" alt=""></a></div>
+                                            <div class="media-body m-l-20">
+                                                <h4 class="media-heading f-w-600">CMMS</h4>
+                                                <p>hello@cmmslk.com<br><span class="digits">011-2788900</span></p>
+                                            </div>
+                                        </div>
+                                        <!-- End Info-->
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="text-md-end text-xs-center">
+                                            <h3>Order No: <span id="orderNo" class="digits counter">0</span></h3>
+                                            <p>
+                                                Placed Date: <span id="placedDate" class="digits"> xx, xxxx</span><br/>
+                                                Delivery Date: <span id="estDeliveryDate" class="digits"> xx, xxxx</span>
+                                            </p>
+                                        </div>
+                                        <!-- End Title  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End InvoiceTop-->
+                            <div class="row invo-profile">
+                                <div class="col-xl-4">
+                                    <div class="media">
+                                        <div class="media-body m-l-20">
+                                            <h4 id="clientName" class="media-heading f-w-600">Client Name</h4>
+                                            <p>
+                                                <span id="addressLine1">xxxxxxxxxxxxxxxxx</span><br>
+                                                <span id="addressLine2">xxxxxxxxxxxxxxxxx</span><br>
+                                                <span id="mobileNo" class="digits">XXXXXXXXXX</span>
+                                            </p>
+                                            <br/>
+                                            <h6 class="media-heading f-w-600">Payment Method: </h6><span  id="payMethodName" >XXXXX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-8">
+                                    <div class="text-xl-end" id="project">
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Invoice Mid-->
+                            <div>
+                                <div class="table-responsive invoice-table" id="orderInvoiceViewTable">
+                                    <table class="table table-bordered table-striped">
+                                        <tbody id="invoiceTableDiv">
+                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- End Table-->
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div>
+                                            <center><p class="legal"><strong>Thank you for shopping on CMMS.</strong></p></center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 text-center mt-3">
+                            <button class="btn btn-primary" type="button" onclick="GoToItemList()">Continue Shopping</button>&nbsp;&nbsp;
+                            <button class="btn btn-secondary" type="button" onclick="GoToOrderHistory()">Order History</button>
+                        </div>
+                        <!-- End Invoice-->
+                        <!-- End Invoice Holder-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+
+@section Scripts {
+    <script src="~/scripts/EStore/order-invoice-view.js" asp-append-version="true"></script>
+}

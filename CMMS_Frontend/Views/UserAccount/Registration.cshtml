@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewData["Title"] = "Registration";
+}
+
+@section Styles {
+
+<style>
+
+</style>
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid" style="margin-top:5%;">
+    <div class="row">
+        <div class="col-sm-1">
+
+        </div>
+        <div class="col-sm-10">
+            <div class="card">
+                <div class="card-header">
+                    <center>
+                        <h5>Create Your Account</h5><span>Enter your personal details to create account</span> 
+                    </center>
+                </div>
+                <div class="card-body">
+                    <div class="stepwizard">
+                        <div class="stepwizard-row setup-panel">
+                            <div class="stepwizard-step">
+                                <a id="step1" class="btn btn-primary" href="#step-1">1</a>
+                                <p>Step 1</p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a id="step2" class="btn btn-light" href="#step-2">2</a>
+                                <p>Step 2</p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a id="step3" class="btn btn-light" href="#step-3">3</a>
+                                <p>Step 3</p>
+                            </div>
+                            <div class="stepwizard-step">
+                                <a id="step4" class="btn btn-light" href="#step-4">4</a>
+                                <p>Step 4</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="theme-form login-form" autocomplete="off">
+                        <div class="setup-content" id="step-1">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">First Name</label>
+                                        <input id="firstName" class="form-control" type="text" placeholder="First Name" required="required" autocomplete="off">
+                                        <label id="firstNameCheck" style="color: red;">
+                                            *First Name is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Last Name</label>
+                                        <input id="lastName"  class="form-control" type="text" placeholder="Last Name" required="required" autocomplete="off">
+                                        <label id="lastNameCheck" style="color: red;">
+                                            *Last Name is required
+                                        </label>
+                                    </div>
+                                    <button id="regFirstStepBtn" onclick="validateFirstStep()" class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setup-content" id="step-2">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Username</label>
+                                        <input id="username" class="form-control" type="text" placeholder="Username" required="required" autocomplete="off">
+                                        <label id="usernameCheck" style="color: red;">
+                                            *Username is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                        <input id="userEmail" class="form-control" type="text" placeholder="your@example.com" required="required" autocomplete="off">
+                                        <label id="userEmailCheck" style="color: red;">
+                                            *Email is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Password</label>
+                                        <input id="userPassword" class="form-control" type="password" placeholder="Password" required="required" autocomplete="new-password">
+                                        <label id="userPasswordCheck" style="color: red;">
+                                            *Password is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Confirm Password</label>
+                                        <input id="userConfirmPassword" class="form-control" type="password" placeholder="Confirm Password" required="required" autocomplete="new-password">
+                                        <label id="userConfirmPasswordCheck" style="color: red;">
+                                            *Password Confirmation is required
+                                        </label>
+                                    </div>
+                                    <button id="regSecondStepBtn" onclick="validateSecondStep()" class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setup-content" id="step-3">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">NIC</label>
+                                        <input id="nic" class="form-control" type="text" placeholder="NIC" required="required" autocomplete="off">
+                                        <label id="nicCheck" style="color: red;">
+                                            *NIC is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Mobile No</label>
+                                        <input id="mobileNo" class="form-control" type="text" placeholder="Mobile No" required="required" autocomplete="off">
+                                        <label id="mobileNoCheck" style="color: red;">
+                                            *Mobile No is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Address 1</label>
+                                        <input id="address1" class="form-control" type="text" placeholder="Address 1" required="required" autocomplete="off">
+                                        <label id="address1Check" style="color: red;">
+                                            *Address 1 is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Address 2</label>
+                                        <input id="address2" class="form-control" type="text" placeholder="Address 2" autocomplete="off">
+                                        <label id="address2Check" style="color: red;">
+                                            *Address 2 is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Address 3</label>
+                                        <input id="address3" class="form-control" type="text" placeholder="Address 3" required="required" autocomplete="off">
+                                        <label id="address3Check" style="color: red;">
+                                            *Address 3 is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">District</label>
+                                        <input id="district" class="form-control" type="text" placeholder="District" required="required" autocomplete="off">
+                                        <label id="districtCheck" style="color: red;">
+                                            *District is required
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Province</label>
+                                        <input id="province" class="form-control" type="text" placeholder="Province" required="required" autocomplete="off">
+                                        <label id="provinceCheck" style="color: red;">
+                                            *Province is required
+                                        </label>
+                                    </div>
+                                    <button id="regThirdStepBtn" onclick="validateThirdStep()" class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setup-content" id="step-4">
+                            <div class="col-xs-12">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">What is your role in CMMS?</label>
+                                        <select id="roleID" class="form-select" style="width:100%;">
+                                            <option value=0>Please Select</option>
+                                        </select>
+                                        <label id="roleIDCheck" style="color: red;">
+                                            *Please select your role
+                                        </label>
+                                    </div>
+                                    <div id="userContractorView" class="form-group">
+                                        <label class="control-label">Please select service/services that you provide</label>
+                                        <select id="serviceTypeID" class="form-select" style="width:100%;">
+                                        </select>
+                                        <label id="serviceTypeIDCheck" style="color: red;">
+                                            *Please select service/services
+                                        </label>
+                                    </div>
+                                    <div id="userVendorView" class="form-group">
+                                        <label class="control-label">Please select item categories that you are selling</label>
+                                        <select id="vendorCategoryTypeID" class="form-select" style="width:100%;">
+                                        </select>
+                                        <label id="vendorCategoryTypeIDCheck" style="color: red;">
+                                            *Please select category/categories
+                                        </label>
+                                    </div>
+                                    <button id="regSubmitBtn" class="btn btn-secondary pull-right" onclick="validateFinalStep();return false" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>                     
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <p>Already have an account?<a class="ms-2" href="/UserAccount/Login">Sign in</a></p>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 footer-copyright">
+                                <p class="mb-0">Copyright @DateTime.Now.Year © CMMS All rights reserved.</p>
+                            </div>
+                            <div class="col-md-6">
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/assets/js/form-wizard/form-wizard-two.js"></script>
+    <script src="~/scripts/UserLogin/user-registration.js" asp-append-version="true"></script>
+}

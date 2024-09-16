@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Product Page";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div>
+        <div class="row product-page-main p-0">
+            <div class="col-xl-6 col-md-6 box-col-6 xl-50">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="product-img">
+                                <img id="itemImageURL" class="img-fluid" src="../assets/images/ecommerce/01.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 box-col-6 xl-50">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="pro-group pt-0 border-0">
+                            <div class="product-page-details mt-0">
+                                <h3 id="itemName">{Item Name}</h3>
+                            </div>
+                            <div id="unitAmountDisplay" class="product-price">
+                                {Rs. XXXXX.XX}
+                            </div>
+                        </div>
+                        <div id="itemDescription" class="pro-group">
+                            <p>{Item Description}</p>
+                        </div>
+                        <div class="pro-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>Availability &nbsp;: &nbsp;</b></td>
+                                                <td id="itemAvalability">{Item Availability}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Category &nbsp;:&nbsp;</b></td>
+                                                <td id="vendorCategoryName">{Item Category}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td> <b>Vendor &nbsp;: &nbsp;</b></td>
+                                                <td id="vendorName">{Vendor}</td>
+                                            </tr>
+                                            <tr>
+                                                <td> <b>Sold In &nbsp;: &nbsp;</b></td>
+                                                <td id="uomName">{Item UOM}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-md-12">
+                                <input id="itemID" type="hidden">
+                                <input id="itemName" type="hidden">
+                                <input id="itemDescriptionV" type="hidden">
+                                <input id="itemImageURLV" type="hidden">
+                                <input id="unitAmount" type="hidden">
+                                <input id="minQty" type="hidden">
+                                <input id="maxQty" type="hidden">
+                                <input id="totalQty" type="hidden">
+                                <input id="uom" type="hidden">
+                                <input id="vendorID" type="hidden">
+                            </div>
+                        </div>
+
+                        <div class="pro-group pb-0">
+                            <center>
+                                <div class="product-box row">
+                                    <div id="addToCartBtnDiv" class="addcart-btn">
+                                        <br />
+                                        <button id="itemAddToCartBtn" class="btn btn-primary m-r-10" onclick="addCartBtnEvent(this.id);">
+                                            <i class="fa fa-shopping-basket me-2"></i>Add To Cart
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div id="itemQtyDiv" class="col-md-5" style="display: none;">
+                                            <br />
+                                            <fieldset class="qty-box">
+                                                <div class="input-group">
+                                                    <input id="itemInputQty" class="touchspin text-center" type="text" value="1" onchange="addCartBtnEvent(this.id);" readonly>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/scripts/EStore/item-view.js" asp-append-version="true"></script>
+}

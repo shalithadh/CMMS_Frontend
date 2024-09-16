@@ -1,0 +1,305 @@
+﻿
+@{
+    ViewData["Title"] = "Task Management";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3 id="projectTitleName"></h3>          
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Task List </h5>
+                        </div>
+                        <div class="col-lg-3">
+                            @if ((await authorizationService.AuthorizeAsync(User, "AddNewTask")).Succeeded)
+                            {
+                                <button id="btnTaskMgntOpenModal" class="btn btn-primary" onClick="AddTaskMgntPopUp();" type="button" style="float:right;">Add + </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--First Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                                <h6>Filter Panel</h6>
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Task Status</label>
+                                        <select id="taskStatusFilter" class="form-select" style="width:100%;">
+                                            <option value=0>Please Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Starting Date</label>
+                                        <input id="startDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label>Ending Date</label>
+                                        <input id="endDateFilter" class="datepicker-here form-control" type="text" data-language="en" placeholder="MM/DD/YYYY" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="mb-3">
+                                        <label style="color: white;">Filter</label><br />
+                                         @if ((await authorizationService.AuthorizeAsync(User, "EditNewTask")).Succeeded)
+                                         {
+                                            <a id="btnFilter" class="btn btn-secondary" onclick="LoadFilteredTaskList()">Filter</a>
+                                         }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="taskMgntTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Task Name</th>
+                                            <th>StatusID</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Description</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Assign To</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!--Add Task Popup Here-->
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="taskModalTitle" class="modal-title">Add Task</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form theme-form">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Task Name</label>
+                                <input id="taskName" class="form-control" type="text" placeholder="Task Name *">
+                                <label id="taskNameCheck" style="color: red;">
+                                    *Task Name is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Task Rate (LKR)</label>
+                                <input id="taskRate" class="form-control" type="text" placeholder="Enter Task Rate in LKR">
+                                <label id="taskRateCheck" style="color: red;">
+                                    *Task Rate is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Task Rate Type</label>
+                                <select id="taskRateType" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="taskRateTypeCheck" style="color: red;">
+                                    *Please select a Task Rate Type
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Task Priority</label>
+                                <select id="taskPriority" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="taskPriorityCheck" style="color: red;">
+                                    *Please select a Task Priority
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Task Status</label>
+                                <select id="taskStatus" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="taskStatusCheck" style="color: red;">
+                                    *Please select a Task Status
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label>Description</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Starting Date</label>
+                                <input id="startDate" class="datepicker-here form-control" type="text" data-language="en">
+                                <label id="startDateCheck" style="color: red;">
+                                    *Start Date is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Starting Time</label>
+                                <div class="input-group" data-placement="top" data-align="left" data-donetext="Done">
+                                    <input id="startTime" class="form-control" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Ending Date</label>
+                                <input id="endDate" class="datepicker-here form-control" type="text" data-language="en">
+                                <label id="endDateCheck" style="color: red;">
+                                    *End Date is required
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Ending Time</label>
+                                <div class="input-group" data-placement="top" data-align="left" data-donetext="Done">
+                                    <input id="endTime" class="form-control" type="text"><span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Service Type</label>
+                                <select id="serviceType" class="form-select" style="width:100%;">
+                                    <option value=0>Please Select</option>
+                                </select>
+                                <label id="serviceTypeCheck" style="color: red;">
+                                    *Please select a Service Type
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Assign To</label>
+                                <select id="assignTo" class="form-select" style="width:100%;">
+                                </select>
+                                <label id="assignToCheck" style="color: red;">
+                                    *Please select a Assign To
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Task Images</label>
+                                    <br />
+                                    <input type="file" multiple id="taskImageGallery">
+                                    @if ((await authorizationService.AuthorizeAsync(User, "EditNewTask")).Succeeded)
+                                    {
+                                        <button id="btnClearSelectedImg" class="btn btn-danger btn-pill btn-sm me-3" onclick="clearAllSelectedImages()">Clear Images</button>
+                                    }
+                                    <div class="gallery"></div>
+                                    <br />
+                                    <br />
+                                    <label id="taskImageGalleryCheck" style="color: red;">
+                                        *Please upload work proof images to complete the task
+                                    </label>
+                                    @*<br />
+                                    <br />
+                                    @*<a id="btnTestImageUpload" class="btn btn-primary me-3" onclick="ImageUpload()">Upload</a>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input id="taskID" type="hidden">
+                            <input id="projectID" type="hidden">
+                            <input id="approvalStatus" type="hidden">
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-end">
+                                 @if ((await authorizationService.AuthorizeAsync(User, "EditNewTask")).Succeeded)
+                                 {
+                                    <button id="btnSaveDetails" class="btn btn-primary me-3" onclick="SubmitButtonEvent()">Add</button>
+                                 }
+                                 @if ((await authorizationService.AuthorizeAsync(User, "AddNewTask")).Succeeded)
+                                 {
+                                    <button id="btnReset" class="btn btn-secondary" onclick="ClearData()">Reset</button>
+                                 }
+                                <label id="taskApprovedMessage" style="color: red;">
+                                    Task already approved by Client
+                                </label>
+                                <label id="taskRejectedMessage" style="color: red;">
+                                    Task already rejected by Client
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Add Task Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/ProjectMgnt/create-new-taskmgnt.js" asp-append-version="true"></script>
+}

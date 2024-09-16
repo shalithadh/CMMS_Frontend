@@ -1,0 +1,37 @@
+﻿<div class="main-header-right row m-0">
+    <div class="main-header-left">
+        <div class="logo-wrapper"><a href="/Home/Index"><img class="img-fluid" style="max-width: 80%;" src="~/assets/images/logo/cmms-logo-no-background.svg" alt="CMMS-Logo"></a></div>
+        <div class="dark-logo-wrapper"><a href="/Home/Index"><img class="img-fluid" style="max-width: 80%;" src="~/assets/images/logo/cmms-logo-black.svg" alt="CMMS-Logo"></a></div>
+        <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
+    </div>
+    <div class="left-menu-header col">
+        <ul>
+            <li>
+
+            </li>
+        </ul>
+    </div>
+    <div class="nav-right col pull-right right-menu p-0">
+        <ul class="nav-menus">
+            <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+            @if ((await authorizationService.AuthorizeAsync(User, "ViewEStore")).Succeeded)
+            {
+                <li class="onhover-dropdown">
+                    <a href="/EStore/CartView">
+                        <div class="notification-box">
+                            <i data-feather="shopping-bag"></i>&nbsp;
+                            <span id="cmms_cartItemCount" class="pull-right badge badge-primary badge-pill">0</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <span onclick="goToCMMSCartView();" id="cmms_cartItemTotalAmount" class="f-w-600">Rs 0.00</span>&nbsp;
+                </li>
+            }
+            <li class="onhover-dropdown p-0">
+                <button class="btn btn-primary-light" type="button" onclick="LogOutUser(true)"><i data-feather="log-out"></i>Log out</button>
+            </li>
+        </ul>
+    </div>
+    <div class="d-lg-none mobile-toggle pull-right w-auto"><i data-feather="more-horizontal"></i></div>
+</div>

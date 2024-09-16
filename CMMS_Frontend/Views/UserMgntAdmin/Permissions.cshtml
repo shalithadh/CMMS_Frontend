@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "Permissions";
+}
+
+@section Styles {
+
+}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-8">
+                <h3>Permissions</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid starts-->
+<div class="container-fluid list-products">
+    <div class="row">
+        <!-- Individual column searching (text inputs) Starts-->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header pb-0">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h5>Permission List </h5>
+                        </div>
+                        <div class="col-lg-3">                          
+                            @if ((await authorizationService.AuthorizeAsync(User, "AddUserPermission")).Succeeded)
+                            {
+                                <button id="btnPermiOpenModal" class="btn btn-primary" onClick="AddPermiPopUp();" type="button" style="float:right;">Add + </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!--Second Card-->
+                    <div class="card">
+                        @*<div class="card-header pb-0">
+                            </div>*@
+                        <div class="card-body chart-block">
+                            <div>
+                                <table id="permiTable" class="display" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Screen Name</th>
+                                            <th>Permission Name</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Individual column searching (text inputs) Ends-->
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+<!--Add Permissions Popup Here-->
+<div class="modal fade" id="addPermiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="permiModalTitle" class="modal-title">Add Permission</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form theme-form">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Screen Name</label>
+                                <input id="screenName" class="form-control" type="text" placeholder="Screen Name *">
+                                <label id="screenNameCheck" style="color: red;">
+                                    *Screen Name is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <label>Permission Name</label>
+                                <input id="permissionName" class="form-control" type="text" placeholder="Permission Name *">
+                                <label id="permissionNameCheck" style="color: red;">
+                                    *Permission Name is required
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="mb-3">
+                                <div class="form-check form-check-inline checkbox checkbox-primary">
+                                    <input class="form-check-input" id="isActive" type="checkbox">
+                                    <label class="form-check-label" for="isActive">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input id="permissionID" type="hidden">
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col">
+                        <div class="text-end">
+                            @if ((await authorizationService.AuthorizeAsync(User, "EditUserPermission")).Succeeded)
+                            {
+                                <button id="btnSaveDetails" class="btn btn-primary me-3" onclick="SubmitButtonEvent()">Add</button>
+                            }
+                            @if ((await authorizationService.AuthorizeAsync(User, "AddUserPermission")).Succeeded)
+                            {
+                                <button id="btnReset" class="btn btn-secondary" onclick="ClearData()">Reset</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Add Permissions Popup End Here-->
+
+@section Scripts {
+    <script src="~/scripts/UserMgnt/permissions.js" asp-append-version="true"></script>
+}

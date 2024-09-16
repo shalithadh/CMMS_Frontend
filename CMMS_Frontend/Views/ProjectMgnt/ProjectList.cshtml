@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Project List";
+}
+
+@section Styles {
+
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row project-cards">
+        <div class="col-md-12 project-list">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6 p-0">
+                        <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" id="allProject-tab" data-bs-toggle="tab" href="#allProject" role="tab" aria-controls="allProject" aria-selected="true" onclick="loadFilteredProjectList(this.id);"><i data-feather="target"></i>All</a></li>
+                            <li class="nav-item"><a class="nav-link" id="doingProject-tab" data-bs-toggle="tab" href="#doingProject" role="tab" aria-controls="doingProject" aria-selected="false" onclick="loadFilteredProjectList(this.id);"><i data-feather="info"></i>Doing</a></li>
+                            <li class="nav-item"><a class="nav-link" id="doneProject-tab" data-bs-toggle="tab" href="#doneProject" role="tab" aria-controls="doneProject" aria-selected="false" onclick="loadFilteredProjectList(this.id);"><i data-feather="check-circle"></i>Done</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 p-0">
+                         @if ((await authorizationService.AuthorizeAsync(User, "AddNewProject")).Succeeded)
+                         {
+                            <div class="form-group mb-0 me-0"></div><a class="btn btn-primary" href="/ProjectMgnt/CreateNewProject"> <i data-feather="plus-square"> </i>Create New Project</a>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content" id="top-tabContent">
+                        <div class="tab-pane fade show active" id="allProject" role="tabpanel" aria-labelledby="allProject-tab">
+                            <div class="row" id="projectListAllTab">
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="doingProject" role="tabpanel" aria-labelledby="doingProject-tab">
+                            <div class="row" id="projectListDoingTab">
+                               
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="doneProject" role="tabpanel" aria-labelledby="doneProject-tab">
+                            <div class="row" id="projectListDoneTab">
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+@section Scripts {
+    <script src="~/scripts/ProjectMgnt/projectmgnt-list.js" asp-append-version="true"></script>
+}

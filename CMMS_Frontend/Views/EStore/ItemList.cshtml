@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Product List";
+}
+
+@section Styles {
+    <style>
+           .ui-autocomplete {
+               max-height: 100px;
+               overflow-y: auto;
+               /* prevent horizontal scrollbar */
+               overflow-x: hidden;
+           }
+            /* IE 6 doesn't support max-height
+            * we use height instead, but this forces the menu to always be this tall
+            */
+           * html .ui-autocomplete {
+               height: 100px;
+           }
+    </style>
+}
+
+<!-- Container-fluid starts-->
+<div class="container-fluid product-wrapper">
+    <div class="product-grid">
+        <div class="feature-products">
+            <div class="row m-b-10">
+                <div class="col-md-3 col-sm-2 products-total">
+
+                </div>
+                <div class="col-md-9 col-sm-10 text-end">
+                    @*<span class="f-w-600 m-r-5">Showing Products 1 - 24 Of 200 Results</span>*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pro-filter-sec">
+                        <div class="product-sidebar">
+                            <div class="filter-section">
+                                <select id="productFilter" class="form-select" style="width:100%;">
+                                    <option value=0>Default</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="product-search">
+                            <form>
+                                <div class="form-group m-0">
+                                    <input id="itemSearch" class="form-control" type="text" role="combobox" placeholder="&#xF002; Search Item..." style="font-family:Arial, FontAwesome; text-transform:uppercase;">
+                                    <input type="hidden" id="itemID">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-wrapper-grid">
+            <div id="itemListGrid" class="row">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+
+@section Scripts {
+
+    <script src="~/assets/js/product-tab.js"></script>
+    <script src="~/scripts/EStore/item-list.js" asp-append-version="true"></script>
+
+}
