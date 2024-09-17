@@ -361,7 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-# /CMMS_Frontend/wwwroot/uploads/taskmgnt
-# /CMMS_Frontend/wwwroot/uploads/invmgnt
-# /CMMS_Frontend/wwwroot/uploads/advmgnt
-# /CMMS_Frontend/wwwroot/uploads/usermgnt
+/CMMS_Frontend/wwwroot/uploads/taskmgnt
+/CMMS_Frontend/wwwroot/uploads/invmgnt
+/CMMS_Frontend/wwwroot/uploads/advmgnt
+/CMMS_Frontend/wwwroot/uploads/usermgnt
